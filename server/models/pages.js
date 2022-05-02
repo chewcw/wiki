@@ -620,7 +620,19 @@ module.exports = class Page extends Model {
           replacement: c => ''
         })
 
+        td.addRule('diagram', {
+          filter: (n, o) => {
+            // expect this img is a drawio diagram
+            return n.nodeName === 'IMG' && n.src.startsWith('data://image/svg+xml;base64,')
+          },
+          replacement: (c, n) => {
+            const src = n.src.replace(/^data:\/\/image\/svg\+xml;base64,/, '')
+            return '```diagram\n' + src + '\n```\n'
+          }
+        })
+
         convertedContent = td.turndown(ogPage.content)
+
       // -> Unsupported
       } else {
         throw new Error('Unsupported source / destination content types combination.')

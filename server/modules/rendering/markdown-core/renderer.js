@@ -28,7 +28,7 @@ module.exports = {
       quotes: _.get(quoteStyles, this.config.quotes, quoteStyles.English),
       highlight(str, lang) {
         if (lang === 'diagram') {
-          return `<pre class="diagram">` + Buffer.from(str, 'base64').toString() + `</pre>`
+          return `<pre class="diagram">` + str + `</pre>`
         } else {
           return `<pre><code class="language-${lang}">${_.escape(str)}</code></pre>`
         }

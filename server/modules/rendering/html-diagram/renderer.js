@@ -4,7 +4,7 @@ module.exports = {
       $(elm).children('svg').each((sidx, svg) => {
         $(svg).removeAttr('content')
       })
-      $(elm).replaceWith($(`<div class="diagram">${$(elm).html()}</div>`))
+      $(elm).replaceWith($(`<img class="diagram" src="data:image/svg+xml;base64,${$(elm).html()}">`))
     })
   }
 }
